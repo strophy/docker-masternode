@@ -1,0 +1,28 @@
+version: '3'
+
+services:
+  dashd:
+    image: strophy/dashd:latest
+    container_name: dashd
+    command: /bin/bash -c 'dashd -conf=/dash/.dashcore/dash.conf'
+    restart: always
+    volumes:
+      - ./dash.conf:/dash/.dashcore/dash.conf
+      - dashd_data:/dash
+    ports:
+      - 19999:19999
+
+  sentinel:
+    image: strophy/sentinel:latest
+    container_name: sentinel
+    restart: always
+    volumes:
+      - ./dash.conf:/sentinel/dash.conf
+      - dashd_data:/dash
+    environment:
+      - RPCHOST=dashd
+      - RPCPORT=19998
+      - NETWORK=testnet
+
+volumes:
+  dashd_data:
