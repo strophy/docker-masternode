@@ -7,4 +7,4 @@ echo -n "Enter masternode BLS private key: "
 read blsprivkey
 echo "masternodeblsprivkey="$blsprivkey >> dash.conf
 
-docker-compose -d up
+docker-compose up -d
