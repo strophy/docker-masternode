@@ -8,7 +8,7 @@ services:
     restart: always
     volumes:
       - ./dash.conf:/dash/.dashcore/dash.conf
-      - dashd_data:/dash
+      - data:/dash
     ports:
       - 19999:19999
 
@@ -18,11 +18,11 @@ services:
     restart: always
     volumes:
       - ./dash.conf:/sentinel/dash.conf
-      - dashd_data:/dash
+      - data:/dash
     environment:
       - RPCHOST=dashd
       - RPCPORT=19998
       - NETWORK=testnet
 
 volumes:
-  dashd_data:
+  data:
