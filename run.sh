@@ -24,7 +24,7 @@ printtoconsole=1
 server=1
 datadir=/dash
 rpcuser=dashrpc
-rpcpassword=$(dd if=/dev/urandom bs=33 count=1 2>/dev/null | base64)
+rpcpassword=$(< /dev/urandom tr -dc _A-Z-a-z-0-9 | head -c${1:-32})
 rpcbind=0.0.0.0
 rpcallowip=172.16.0.0/12
 
