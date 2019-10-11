@@ -10,7 +10,7 @@ services:
       - ./dash.conf:/dash/.dashcore/dash.conf
       - data:/dash
     ports:
-      - 19999:19999
+      - $DASHD_PORT:$DASHD_PORT
 
   sentinel:
     image: strophy/sentinel:latest
@@ -21,8 +21,8 @@ services:
       - data:/dash
     environment:
       - RPCHOST=dashd
-      - RPCPORT=19998
-      - NETWORK=testnet
+      - RPCPORT=$DASHD_PORT
+      - NETWORK=$DASH_NETWORK
 
 volumes:
   data:
